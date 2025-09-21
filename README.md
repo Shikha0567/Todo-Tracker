@@ -45,7 +45,7 @@ Installation
 Clone the repository:
 
 git clone https://github.com/Shikha0567/Todo-Tracker
-cd <repo-name>
+cd Todo-Tracker
 
 Install dependencies:
 
