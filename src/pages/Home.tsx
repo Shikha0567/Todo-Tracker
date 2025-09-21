@@ -5,7 +5,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import type { tasksType } from "../types";
 import { processTasks } from "../utilities";
 import Loader from "../components/Loader";
-import { tasks as initialTasks } from "../data";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
