@@ -11,7 +11,7 @@ A simple and interactive To-Do application built with **React**, featuring task 
 - Highlight recently updated tasks.
 - Loader for better UX during page loads.
 - Fully responsive layout.
-- Deployed live (shareable link).
+- Deployed live ([Todo-Tracker](https://todo-tracker-5pr6.vercel.app/)).
 
 ## Screenshots
 
@@ -39,3 +39,20 @@ Make sure you have **Node.js** and **npm** installed:
 node -v
 npm -v
 ```
+
+Installation
+
+Clone the repository:
+
+git clone https://github.com/Shikha0567/Todo-Tracker
+cd <repo-name>
+
+Install dependencies:
+
+npm install
+
+Start the development server:
+
+npm start
+
+The app will run on http://localhost:3000.
