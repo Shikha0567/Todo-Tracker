@@ -70,6 +70,10 @@ body {
 .accordion-button:focus {
   box-shadow: none;
 }
+.accordion {
+  --bs-accordion-border-width: 0 !important;
+  border: none !important;
+}
 
 .circle {
   font-weight: 400;
@@ -95,11 +99,12 @@ body {
   border-radius: 50%;
   color: white;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: transform 0.2s ease-in-out;
 }
 
 .add-icon:hover {
   background: #02376d;
+  transform: scale(1.1);
 }
 
 .font-xs {
@@ -234,4 +239,9 @@ body {
   100% {
     background-color: white;
   }
+}
+
+.search-results {
+  max-height: 60vh;
+  overflow-y: auto;
 }

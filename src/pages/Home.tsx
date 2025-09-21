@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
-import Search from "../components/Search";
+import { useEffect, useState } from "react";
 import Accordion from "../components/Accordion";
 import { FaPlus } from "react-icons/fa6";
 import { useLocation, useNavigate } from "react-router-dom";
 import type { tasksType } from "../types";
 import { processTasks } from "../utilities";
 import { tasks as initialTasks } from "../data";
+import Loader from "../components/Loader";
 
 const Home = () => {
+  const [loading, setLoading] = useState(true);
   const [tasks, setTasks] = useState<tasksType[]>([]);
   const [highlightId, setHighlightId] = useState<number | null>(null);
   const [openStatus, setOpenStatus] = useState<string>("in-progress");
@@ -19,29 +20,36 @@ const Home = () => {
       setOpenStatus(location.state.defaultOpenStatus);
       navigate(location.pathname, { replace: true, state: {} });
     }
+
     if (location.state?.highlightId) {
       setHighlightId(location.state.highlightId);
-      const timer = setTimeout(() => setHighlightId(null), 3000);
-      return () => clearTimeout(timer);
+      const highlightTimer = setTimeout(() => setHighlightId(null), 3000);
+
+      return () => clearTimeout(highlightTimer);
     }
 
-    const savedTasks = window.localStorage.getItem("tasks");
-    if (savedTasks) {
-      const parsedTasks = JSON.parse(savedTasks);
-      setTasks(processTasks(parsedTasks));
-    } else {
-      setTasks(processTasks(initialTasks));
-      window.localStorage.setItem("tasks", JSON.stringify(initialTasks));
-    }
+    const loaderTimer = setTimeout(() => {
+      const savedTasks = window.localStorage.getItem("tasks");
+      if (savedTasks) {
+        const parsedTasks = JSON.parse(savedTasks);
+        setTasks(processTasks(parsedTasks));
+      }
+      setLoading(false);
+    }, 800);
+
+    return () => clearTimeout(loaderTimer);
   }, [location, navigate]);
 
   const navigateToAddTask = () => {
     navigate("/add-task");
   };
 
+  if (loading) {
+    return <Loader fullscreen size="lg" />;
+  }
+
   return (
     <div className="d-flex justify-content-center flex-column p-3 relative">
-      <Search />
       <Accordion
         tasks={tasks}
         defaultOpenStatus={openStatus}

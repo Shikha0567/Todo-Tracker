@@ -11,11 +11,10 @@ const TodoCard = ({
   highlightId,
 }: {
   task: tasksType;
-  highlightId: number | null;
+  highlightId?: number | null;
 }) => {
   const navigate = useNavigate();
   const handleUpdateTask = (task: tasksType) => {
-    console.log(task, "update task");
     navigate("/update-task", { state: { task } });
   };
 
@@ -33,7 +32,6 @@ const TodoCard = ({
     );
     window.localStorage.setItem("tasks", JSON.stringify(updatedTasks));
     window.location.reload();
-    console.log(task, "delete task");
   };
   return (
     <div
@@ -76,11 +74,13 @@ const TodoCard = ({
           </div>
 
           <span className="d-flex flex-row align-items-center gap-2 mt-2 task-icons">
-            <MdOutlineEdit
-              className="primary ms-2"
-              size={16}
-              onClick={() => handleUpdateTask(task)}
-            />
+            {task.status !== "completed" && (
+              <MdOutlineEdit
+                className="primary ms-2"
+                size={16}
+                onClick={() => handleUpdateTask(task)}
+              />
+            )}
             <FaRegTrashCan
               className="text-danger ms-2"
               size={16}

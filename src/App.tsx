@@ -7,9 +7,9 @@ import { tasks } from "./data";
 import UpdateTodo from "./pages/UpdateTodo";
 
 function App() {
-  useEffect(() => {
+  /* useEffect(() => {
     window.localStorage.setItem("tasks", tasks ? JSON.stringify(tasks) : "[]");
-  }, []);
+  }, []); */
 
   return (
     <Routes>
