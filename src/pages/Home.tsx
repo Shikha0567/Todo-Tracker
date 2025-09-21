@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import type { tasksType } from "../types";
 import { processTasks } from "../utilities";
 import Loader from "../components/Loader";
+import { tasks as initialTasks } from "../data";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -14,6 +15,7 @@ const Home = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // useEffect to handle navigation state (openStatus and highlightId)
   useEffect(() => {
     if (location.state?.defaultOpenStatus) {
       setOpenStatus(location.state.defaultOpenStatus);
@@ -26,11 +28,14 @@ const Home = () => {
 
       return () => clearTimeout(highlightTimer);
     }
+  }, [location, navigate]);
 
+  // useEffect to handle initial data fetching from localStorage
+  useEffect(() => {
     const loaderTimer = setTimeout(() => {
       const savedTasks = window.localStorage.getItem("tasks");
       try {
-        const parsedTasks = savedTasks ? JSON.parse(savedTasks) : [];
+        const parsedTasks = savedTasks ? JSON.parse(savedTasks) : initialTasks;
         setTasks(processTasks(parsedTasks));
       } catch (err) {
         console.error(err);
@@ -39,8 +44,9 @@ const Home = () => {
       setLoading(false);
     }, 800);
 
+    // Cleanup function to clear the timer if the component unmounts
     return () => clearTimeout(loaderTimer);
-  }, [location, navigate]);
+  }, []);
 
   const navigateToAddTask = () => {
     navigate("/add-task");
