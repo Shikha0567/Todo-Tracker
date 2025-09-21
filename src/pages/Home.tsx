@@ -29,7 +29,6 @@ const Home = () => {
     }
   }, [location, navigate]);
 
-  // useEffect to handle initial data fetching from localStorage
   useEffect(() => {
     const loaderTimer = setTimeout(() => {
       const savedTasks = window.localStorage.getItem("tasks");
