@@ -5,9 +5,14 @@ const AddTodo = () => {
   const navigate = useNavigate();
   const titleRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
+  const [error, setError] = React.useState<string>("");
 
   const handleAddTodo = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!titleRef.current?.value) {
+      setError("Title is required");
+      return;
+    }
     const newTask = {
       id: Date.now(),
       title: titleRef.current?.value || "",
@@ -29,7 +34,15 @@ const AddTodo = () => {
   const handleCancel = () => {
     if (titleRef.current) titleRef.current.value = "";
     if (descriptionRef.current) descriptionRef.current.value = "";
+    setError("");
   };
+
+  const handleTitleChange = () => {
+    if (error) {
+      setError("");
+    }
+  };
+
   return (
     <div className="d-flex justify-content-center flex-column p-3 relative mt-4">
       <form>
@@ -40,7 +53,9 @@ const AddTodo = () => {
             id="taskTitle"
             placeholder="Enter task title"
             ref={titleRef}
+            onChange={handleTitleChange}
           />
+          {error && <p className="text-danger small p-1">{error}</p>}
         </div>
         <div className="mb-3">
           <textarea

@@ -1,5 +1,4 @@
-import React from "react";
-import Select, { components } from "react-select";
+import { components } from "react-select";
 
 export const DotOption = (props: any) => (
   <components.Option {...props}>

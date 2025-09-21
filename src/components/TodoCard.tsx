@@ -1,4 +1,3 @@
-import React, { use } from "react";
 import type { tasksType } from "../types";
 import { formatDate } from "../utilities";
 import { FaRegTrashCan } from "react-icons/fa6";
@@ -36,7 +35,7 @@ const TodoCard = ({
   return (
     <div
       key={task.id}
-      className={`py-2 border-bottom ${
+      className={`p-2 border-bottom task-card-wrapper ${
         highlightId === task.id ? "highlight" : ""
       }`}
     >

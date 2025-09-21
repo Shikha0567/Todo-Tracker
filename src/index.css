@@ -72,6 +72,7 @@ body {
 }
 .accordion {
   --bs-accordion-border-width: 0 !important;
+  --bs-accordion-btn-padding-x: 0.5rem !important;
   border: none !important;
 }
 
@@ -216,7 +217,9 @@ body {
   cursor: pointer;
   transition: opacity 0.2s ease-in-out, visibility 0.2s;
 }
-
+.task-card-wrapper:hover {
+  background: #f7f7f7;
+}
 .task-card:hover .task-icons {
   opacity: 1;
   visibility: visible;
