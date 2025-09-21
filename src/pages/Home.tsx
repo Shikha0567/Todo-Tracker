@@ -29,9 +29,12 @@ const Home = () => {
 
     const loaderTimer = setTimeout(() => {
       const savedTasks = window.localStorage.getItem("tasks");
-      if (savedTasks) {
-        const parsedTasks = JSON.parse(savedTasks);
+      try {
+        const parsedTasks = savedTasks ? JSON.parse(savedTasks) : [];
         setTasks(processTasks(parsedTasks));
+      } catch (err) {
+        console.error(err);
+        setTasks([]);
       }
       setLoading(false);
     }, 800);
