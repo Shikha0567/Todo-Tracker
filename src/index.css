@@ -16,7 +16,18 @@ body {
   padding-top: 8px;
   padding-bottom: 8px;
 }
-
+.form-control {
+  border: 1px solid #d0d0d0;
+  border-radius: 3px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  color: #66676b;
+}
+.form-control:focus {
+  border: 1px solid #034ea2;
+  box-shadow: none;
+}
 .search {
   position: absolute;
   left: 12px;
@@ -95,24 +106,132 @@ body {
   font-size: 12px;
 }
 
-.in-progress-dot {
-  height: 10px;
+.status-select {
+  width: 100%;
+}
+
+.status-select__control {
+  border: 1px solid #d0d0d0;
+  border-radius: 3px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  color: #231f20;
+}
+
+.status-select__control--is-focused {
+  border-color: #034ea2 !important;
+  box-shadow: none !important;
+}
+
+.status-select__menu {
+  margin: 0;
+  border-radius: 5px;
+}
+
+.status-select__menu-list {
+  padding: 0;
+}
+
+.status-select__option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.status-select__option--is-focused {
+  border-color: #034ea2 !important;
+}
+
+.status-select__single-value {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pending-dot,
+.in-progress-dot,
+.completed-dot {
   width: 10px;
-  background-color: #ffb03c;
+  height: 10px;
   border-radius: 50%;
   display: inline-block;
 }
+
 .pending-dot {
-  height: 10px;
-  width: 10px;
   background-color: #d0d0d0;
-  border-radius: 50%;
-  display: inline-block;
+}
+.in-progress-dot {
+  background-color: #ffb03c;
 }
 .completed-dot {
-  height: 10px;
-  width: 10px;
   background-color: #368a04;
-  border-radius: 50%;
-  display: inline-block;
+}
+
+.action-btn {
+  width: 110px;
+  height: 40px;
+  opacity: 1;
+  border-width: 1px;
+  border-radius: 5px;
+}
+.text-success {
+  color: #368a04 !important;
+}
+.btn-cancel {
+  background: white;
+  border: 1px solid #034ea2;
+  color: #034ea2;
+}
+.btn-cancel:hover {
+  background: white;
+  border: 1px solid #226cc0;
+  color: #226cc0;
+}
+.btn-add {
+  background: #034ea2;
+  border: 1px solid #034ea2;
+  color: white;
+}
+.btn-add:hover {
+  background: #226cc0;
+  border: 1px solid #226cc0;
+  color: white;
+}
+.mt-38 {
+  margin-top: 38px;
+}
+
+.task-icons {
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out, visibility 0.2s;
+}
+
+.task-card:hover .task-icons {
+  opacity: 1;
+  visibility: visible;
+}
+.icon-size {
+  font-size: 12px !important;
+}
+.highlight {
+  animation: highlightFlash 2s ease;
+  border-radius: 8px;
+}
+
+@keyframes highlightFlash {
+  0% {
+    background-color: #e3effc;
+  }
+  50% {
+    background-color: #c7def9;
+  }
+  100% {
+    background-color: white;
+  }
 }
